@@ -32,7 +32,6 @@ Keep Track of Length of Employment
     'license': 'AGPL-3',
     'depends': [
         'hr',
-        'hr_security',
     ],
     "external_dependencies": {
         'python': ['dateutil'],
@@ -42,5 +41,6 @@ Keep Track of Length of Employment
     ],
     'test': [
     ],
-    'installable': False,
+    'installable': True,
+    'auto_install': False,
 }
