@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="edit_holiday_status_form_inherit_hr_holidays_uom">
+            <field name="name">hr.holidays.status.form</field>
+            <field name="model">hr.holidays.status</field>
+            <field name="inherit_id" ref="hr_holidays.edit_holiday_status_form" />
+            <field name="arch" type="xml">
+                <field name="active" position="after">
+                    <field name="uom" domain="[('category_id','=', %(product.uom_categ_wtime)d)]"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="edit_holiday_new_inherit_hr_holidays_uom">
+            <field name="name">Leave Request</field>
+            <field name="model">hr.holidays</field>
+            <field name="inherit_id" ref="hr_holidays.edit_holiday_new" />
+            <field name="arch" type="xml">
+              <xpath expr="//sheet/group[1]/group[1]/div/div" position="replace">
+                  <div>
+                      <field name="duration" class="oe_inline"/> <field name="uom" readonly="True" class="oe_inline"/>
+                  </div>
+              </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
