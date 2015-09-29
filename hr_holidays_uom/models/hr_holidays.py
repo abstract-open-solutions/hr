@@ -15,10 +15,12 @@ class hr_holidays_status(models.Model):
 class hr_holidays(models.Model):
     _inherit = "hr.holidays"
 
+    @api.one
     @api.depends('holiday_status_id')
     def _compute_uom(self):
-        if self.holiday_status_id and self.holiday_status_id.uom:
-            self.uom = self.holiday_status_id.uom
+        if self.holiday_status_id:
+            if self.holiday_status_id[0].uom:
+                self.uom = self.holiday_status_id.uom
         else:
             self.uom = self.env.ref("product.product_uom_day")
 
