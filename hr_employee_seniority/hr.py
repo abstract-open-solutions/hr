@@ -90,7 +90,7 @@ class hr_employee(orm.Model):
                         _('Employment Date mismatch!'),
                         _("The initial employment date cannot be after the "
                           "first contract in the system.\n"
-                          "Employee: %s", ee.name))
+                          "Employee: %s") % ee.name)
 
                 delta = relativedelta(dFirstContract, dInitial)
 
