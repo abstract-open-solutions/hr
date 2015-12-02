@@ -26,11 +26,12 @@ class hr_holidays(models.Model):
 
     @api.depends('duration')
     def _compute_number_of_days_temp(self):
-        days = self.uom._compute_qty_obj(
-            from_unit=self.uom,
-            qty=self.duration,
-            to_unit=self.env.ref("product.product_uom_day"))
-        self.number_of_days_temp = days
+        for holiday in self:
+            days = holiday.uom._compute_qty_obj(
+                from_unit=holiday.uom,
+                qty=holiday.duration,
+                to_unit=holiday.env.ref("product.product_uom_day"))
+            holiday.number_of_days_temp = days
 
     uom = fields.Many2one(
         'product.uom',
